@@ -34,6 +34,10 @@ export default class ReadingViewEnhancer extends Plugin {
 		});
 	}
 
+	async onunload() {
+		this.deactivate();
+	}
+
 	/**
 	 * Returns true if active view is in preview(reading) mode
 	 */
