@@ -4,6 +4,8 @@ This is a plugin for [Obsidian](https://obsidian.md/) that enhances the reading 
 by adding a "collapse indicator" selector. Use arrow keys to select next/previous "collapse indicator" and
 fold/unfold easily.
 
+> 📌 Commands are only available if the current active view is in a **reading(preview)** mode.
+
 ## Features
 
 - `Reading View Enhancer: Activate selector`
