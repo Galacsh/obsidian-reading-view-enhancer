@@ -23,3 +23,37 @@ fold/unfold easily.
 - Restart Obsidian if it is running
   - Or, refresh the `Community plugins > Installed plugins`
 - Enable the plugin in the `Installed plugins`
+
+### How to install manually?
+
+There might be various ways to install this plugin.
+
+- Using `curl`
+- Downloading this [archive file](https://github.com/Galacsh/obsidian-reading-view-enhancer/releases/download/manual-installation/obsidian-reading-view-enhancer.zip) and extracting it to `plugins` folder
+
+After installation,
+
+1. Restart your Obsidian
+2. Go to `Settings > Community Plugins > Installed plugins`
+3. Turn on the switch of "Reading View Enhancer" to enable the plugin
+
+#### Using `curl`
+
+```shell
+# Go to your vault's plugins folder
+cd VAULT/.obsidian/plugins
+# Download the archive file
+curl -O https://github.com/Galacsh/obsidian-reading-view-enhancer/releases/download/manual-installation/obsidian-reading-view-enhancer.zip
+# Unzip
+unzip obsidian-reading-view-enhancer.zip
+# Remove the archive file
+rm obsidian-reading-view-enhancer.zip
+```
+
+#### Downloading and Extracting
+
+1. Download this [archive file](https://github.com/Galacsh/obsidian-reading-view-enhancer/releases/download/manual-installation/obsidian-reading-view-enhancer.zip)
+2. Move the file to your vault's `plugins` forlder
+3. Extract the file
+   - If you're using MacOS, you could just double click the file to extract
+4. Remove the archive file
