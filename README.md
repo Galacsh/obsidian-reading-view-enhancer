@@ -17,6 +17,8 @@ fold/unfold easily.
   - `Arrow Left & Right`: Toggle fold/unfold"
 - Click to select nearest "collapse indicator" from clicked position
 
+> Note that the change of a focus deactivates the selector.
+
 ## How to install manually?
 
 There might be various ways to install this plugin.
