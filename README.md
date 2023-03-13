@@ -25,9 +25,9 @@ There might be various ways to install this plugin.
 
 - Using `curl`
 - Downloading this these files into `plugins/obsidian-reading-view-enhancer` folder
-  - [main.js](https://github.com/Galacsh/obsidian-reading-view-enhancer/releases/download/0.0.1/main.js)
-  - [styles.css](https://github.com/Galacsh/obsidian-reading-view-enhancer/releases/download/0.0.1/styles.css)
-  - [manifest.json](https://github.com/Galacsh/obsidian-reading-view-enhancer/releases/download/0.0.1/manifest.json)
+  - `main.js`
+  - `styles.css`
+  - `manifest.json`
 
 After installation,
 
