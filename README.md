@@ -24,7 +24,7 @@ fold/unfold easily.
 There might be various ways to install this plugin.
 
 - Using `curl`
-- Downloading this these files into `plugins/obsidian-reading-view-enhancer` folder
+- Downloading these files into `plugins/obsidian-reading-view-enhancer` folder
   - `main.js`
   - `styles.css`
   - `manifest.json`
@@ -51,7 +51,7 @@ curl -OL https://github.com/Galacsh/obsidian-reading-view-enhancer/releases/down
 curl -OL https://github.com/Galacsh/obsidian-reading-view-enhancer/releases/download/[RELEASE_VERSION]/manifest.json
 ```
 
-### Downloading and Extracting
+### By downloading manually
 
 1. Download this files from the latest [release](https://github.com/Galacsh/obsidian-reading-view-enhancer/releases)
    - `main.js`
