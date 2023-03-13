@@ -16,15 +16,7 @@ fold/unfold easily.
   - `Arrow Down`: Select next "collapse indicator"
 - Click to select nearest "collapse indicator" from clicked position
 
-## Installation
-
-- Download the latest release from the [releases page](https://github.com/Galacsh/obsidian-reading-view-enhancer/releases)
-- Extract the downloaded folder into your Obsidian plugins folder
-- Restart Obsidian if it is running
-  - Or, refresh the `Community plugins > Installed plugins`
-- Enable the plugin in the `Installed plugins`
-
-### How to install manually?
+## How to install manually?
 
 There might be various ways to install this plugin.
 
@@ -40,7 +32,7 @@ After installation,
 2. Go to `Settings > Community Plugins > Installed plugins`
 3. Turn on the switch of "Reading View Enhancer" to enable the plugin
 
-#### Using `curl`
+### Using `curl`
 
 Before to run the code, make sure to change `[VAULT]` and `[RELEASE_VERSION]` into a real value.
 
@@ -56,7 +48,7 @@ curl -OL https://github.com/Galacsh/obsidian-reading-view-enhancer/releases/down
 curl -OL https://github.com/Galacsh/obsidian-reading-view-enhancer/releases/download/[RELEASE_VERSION]/manifest.json
 ```
 
-#### Downloading and Extracting
+### Downloading and Extracting
 
 1. Download this files from the latest [release](https://github.com/Galacsh/obsidian-reading-view-enhancer/releases)
    - `main.js`
