@@ -29,7 +29,10 @@ fold/unfold easily.
 There might be various ways to install this plugin.
 
 - Using `curl`
-- Downloading this [archive file](https://github.com/Galacsh/obsidian-reading-view-enhancer/releases/download/manual-installation/obsidian-reading-view-enhancer.zip) and extracting it to `plugins` folder
+- Downloading this these files into `plugins/obsidian-reading-view-enhancer` folder
+  - [main.js](https://github.com/Galacsh/obsidian-reading-view-enhancer/releases/download/0.0.1/main.js)
+  - [styles.css](https://github.com/Galacsh/obsidian-reading-view-enhancer/releases/download/0.0.1/styles.css)
+  - [manifest.json](https://github.com/Galacsh/obsidian-reading-view-enhancer/releases/download/0.0.1/manifest.json)
 
 After installation,
 
@@ -39,21 +42,25 @@ After installation,
 
 #### Using `curl`
 
+Before to run the code, make sure to change `[VAULT]` and `[RELEASE_VERSION]` into a real value.
+
 ```shell
 # Go to your vault's plugins folder
-cd VAULT/.obsidian/plugins
-# Download the archive file
-curl -O https://github.com/Galacsh/obsidian-reading-view-enhancer/releases/download/manual-installation/obsidian-reading-view-enhancer.zip
-# Unzip
-unzip obsidian-reading-view-enhancer.zip
-# Remove the archive file
-rm obsidian-reading-view-enhancer.zip
+cd [VAULT]/.obsidian/plugins
+# Make a directory
+mkdir obsidian-reading-view-enhancer
+cd obsidian-reading-view-enhancer
+# Download
+curl -OL https://github.com/Galacsh/obsidian-reading-view-enhancer/releases/download/[RELEASE_VERSION]/main.js
+curl -OL https://github.com/Galacsh/obsidian-reading-view-enhancer/releases/download/[RELEASE_VERSION]/styles.css
+curl -OL https://github.com/Galacsh/obsidian-reading-view-enhancer/releases/download/[RELEASE_VERSION]/manifest.json
 ```
 
 #### Downloading and Extracting
 
-1. Download this [archive file](https://github.com/Galacsh/obsidian-reading-view-enhancer/releases/download/manual-installation/obsidian-reading-view-enhancer.zip)
-2. Move the file to your vault's `plugins` forlder
-3. Extract the file
-   - If you're using MacOS, you could just double click the file to extract
-4. Remove the archive file
+1. Download this files from the latest [release](https://github.com/Galacsh/obsidian-reading-view-enhancer/releases)
+   - `main.js`
+   - `styles.css`
+   - `manifest.json`
+2. Create a directory(`obsidian-reading-view-enhancer`) inside `.obsidian/plugins`
+3. Move files to your vault's `.obsidian/plugins/obsidian-reading-view-enhancer` folder
