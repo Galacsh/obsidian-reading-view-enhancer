@@ -14,6 +14,7 @@ fold/unfold easily.
 - Use arrow keys to interact with "collapse indicator"s
   - `Arrow Up`: Select previous "collapse indicator"
   - `Arrow Down`: Select next "collapse indicator"
+  - `Arrow Left & Right`: Toggle fold/unfold"
 - Click to select nearest "collapse indicator" from clicked position
 
 ## How to install manually?
