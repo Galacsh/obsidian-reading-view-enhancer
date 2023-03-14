@@ -25,17 +25,31 @@ fold/unfold easily.
 
 There might be various ways to install this plugin.
 
-- Using `curl`
-- Downloading these files into `plugins/obsidian-reading-view-enhancer` folder
+1. Using Obsidian42-BRAT (Recommended)
+2. Using `curl`
+3. Downloading these files into `plugins/obsidian-reading-view-enhancer` folder
   - `main.js`
   - `styles.css`
   - `manifest.json`
 
 After installation,
 
-1. Restart your Obsidian
-2. Go to `Settings > Community Plugins > Installed plugins`
+1. Go to `Settings > Community Plugins > Installed plugins`
+2. Refresh the list
 3. Turn on the switch of "Reading View Enhancer" to enable the plugin
+
+### Using Obsidian42-BRAT (Recommended)
+
+By using [Obsidian42-BRAT](obsidian://show-plugin?id=obsidian42-brat), you could easily install & update this plugin.
+
+1. Install **Obsidian42-BRAT**
+2. Enable Obsidian42-BRAT
+3. Go to Obsidian42-BRAT options page
+4. Beta plugins list > `Add Beta plugin`
+5. Paste this `https://github.com/Galacsh/obsidian-reading-view-enhancer`
+6. After installation is done, go to `Settings > Community Plugins > Installed plugins`
+7. Refresh the list
+8. Turn on the switch of "Reading View Enhancer" to enable the plugin
 
 ### Using `curl`
 
