@@ -40,7 +40,7 @@ After installation,
 
 ### Using Obsidian42-BRAT (Recommended)
 
-By using [Obsidian42-BRAT](obsidian://show-plugin?id=obsidian42-brat), you could easily install & update this plugin.
+By using [Obsidian42-BRAT](https://obsidian.md/plugins?id=obsidian42-brat), you could easily install & update this plugin.
 
 1. Install **Obsidian42-BRAT**
 2. Enable Obsidian42-BRAT
