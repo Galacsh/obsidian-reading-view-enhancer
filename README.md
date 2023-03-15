@@ -8,10 +8,10 @@ fold/unfold easily.
 
 ## Known Issues
 
-- [ ] **Lazy loaded collapse indicators - not selectable**
+- [ ] **Dynamically loaded collapse indicators - not selectable**
 
-Looks like reading view uses some kind of lazy loading.
-I update the list of **"selectable" collapse indicators** whenever there is a change in DOM. So if some collapse indicators are removed from the DOM by lazy loading, it means that they are not selectable anymore.
+Looks like reading view uses some kind of dynamic loading.
+I update the list of **"selectable" collapse indicators** whenever there is a change in DOM. So if some collapse indicators are removed from the DOM by dynamic loading, it means that they are not selectable anymore.
 
 - [ ] Invisible, but selectable metadata(frontmatter)
 
