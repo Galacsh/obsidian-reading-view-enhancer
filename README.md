@@ -13,12 +13,12 @@ fold/unfold easily.
 Looks like reading view uses some kind of dynamic loading.
 I update the list of **"selectable" collapse indicators** whenever there is a change in DOM. So if some collapse indicators are removed from the DOM by dynamic loading, it means that they are not selectable anymore.
 
-- [ ] Invisible, but selectable metadata(frontmatter)
+- [ ] **Invisible, but selectable metadata(frontmatter)**
 
 I didn't consider the `Settings > Editor > Show Frontmatter: false` option.
 Since I check the 'is-collapsed' class for collapse indicator selection, the invisible collapse indicator has become selectable.
 
-- [ ] Lack of knowledge about plugin development
+- [ ] **Lack of knowledge about Obsidian plugin development**
 
 Actually, I didn't read the [docs](https://marcus.se.net/obsidian-plugin-docs/) much. I'm on reading now!
 
