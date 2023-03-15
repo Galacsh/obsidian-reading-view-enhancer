@@ -18,6 +18,10 @@ I update the list of **"selectable" collapse indicators** whenever there is a ch
 I didn't consider the `Settings > Editor > Show Frontmatter: false` option.
 Since I check the 'is-collapsed' class for collapse indicator selection, the invisible collapse indicator has become selectable.
 
+- [ ] Lack of knowledge about plugin development
+
+Actually, I didn't read the [docs](https://marcus.se.net/obsidian-plugin-docs/) much. I'm on reading now!
+
 ## Features
 
 - `Reading View Enhancer: Activate selector`
