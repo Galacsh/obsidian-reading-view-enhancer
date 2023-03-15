@@ -247,9 +247,9 @@ class CollapseIndicatorManager {
 
 	private scrollToSelector(): void {
 		this.selector?.scrollIntoView({
-			behavior: "smooth",
+			behavior: "auto",
 			block: "center",
-			inline: "center",
+			inline: "nearest",
 		});
 	}
 
