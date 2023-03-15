@@ -6,6 +6,18 @@ fold/unfold easily.
 
 > 📌 Commands are only available if the current active view is in a **reading(preview)** mode.
 
+## Known Issues
+
+- [ ] **Lazy loaded collapse indicators - not selectable**
+
+Looks like reading view uses some kind of lazy loading.
+I update the list of **"selectable" collapse indicators** whenever there is a change in DOM. So if some collapse indicators are removed from the DOM by lazy loading, it means that they are not selectable anymore.
+
+- [ ] Invisible, but selectable metadata(frontmatter)
+
+I didn't consider the `Settings > Editor > Show Frontmatter: false` option.
+Since I check the 'is-collapsed' class for collapse indicator selection, the invisible collapse indicator has become selectable.
+
 ## Features
 
 - `Reading View Enhancer: Activate selector`
@@ -28,9 +40,10 @@ There might be various ways to install this plugin.
 1. Using Obsidian42-BRAT (Recommended)
 2. Using `curl`
 3. Downloading these files into `plugins/obsidian-reading-view-enhancer` folder
-  - `main.js`
-  - `styles.css`
-  - `manifest.json`
+
+- `main.js`
+- `styles.css`
+- `manifest.json`
 
 After installation,
 
