@@ -1,12 +1,15 @@
-import { toHex } from "color2k";
 import {
+	Setting,
 	ButtonComponent,
 	ColorComponent,
-	Setting,
 	ToggleComponent,
 } from "obsidian";
 import ReadingViewEnhancer from "src/main";
+import { toHex } from "color2k";
 
+/**
+ * Registers settings components related to caret
+ */
 export default class CaretSettings {
 	constructor(containerEl: HTMLElement, plugin: ReadingViewEnhancer) {
 		containerEl.createEl("h2", { text: "Caret" });
@@ -15,6 +18,9 @@ export default class CaretSettings {
 	}
 }
 
+/**
+ * Caret color setting component
+ */
 class CaretColorSetting extends Setting {
 	plugin: ReadingViewEnhancer;
 	workspaceEl: HTMLElement;
@@ -28,6 +34,10 @@ class CaretColorSetting extends Setting {
 			.addColorPicker((color) => this.colorPicker(color));
 	}
 
+	/**
+	 * Creates color picker component.
+	 * Also, creates a button to set color to the current accent color.
+	 */
 	colorPicker(color: ColorComponent) {
 		const { settings } = this.plugin;
 		color.setValue(settings.caretColor).onChange((changed) => {
@@ -38,6 +48,10 @@ class CaretColorSetting extends Setting {
 		this.addButton((button) => this.accentColorButton(button, color));
 	}
 
+	/**
+	 * Creates a button to set color to the current accent color.
+	 * Used in {@link colorPicker}
+	 */
 	accentColorButton(button: ButtonComponent, color: ColorComponent) {
 		button.setButtonText("Use current accent color").onClick(() => {
 			const workspaceEl = this.plugin.app.workspace.containerEl;
@@ -51,6 +65,9 @@ class CaretColorSetting extends Setting {
 	}
 }
 
+/**
+ * "Always enable caret" setting component
+ */
 class AlwaysEnableCaretSetting extends Setting {
 	plugin: ReadingViewEnhancer;
 
