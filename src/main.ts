@@ -1,13 +1,9 @@
 import { Plugin } from "obsidian";
 import setCommandsFor from "./commands";
-import {
-	DEFAULT_SETTINGS,
-	ReadingViewEnhancerSettingTab,
-	Settings,
-} from "./settings";
+import { DEFAULT_SETTINGS, RveSettingTab, RveSettings } from "./settings";
 
 export default class ReadingViewEnhancer extends Plugin {
-	public settings: Settings;
+	public settings: RveSettings;
 
 	async onload() {
 		this.loadSettings();
@@ -16,7 +12,7 @@ export default class ReadingViewEnhancer extends Plugin {
 		setCommandsFor(this);
 
 		// Add settings tab
-		this.addSettingTab(new ReadingViewEnhancerSettingTab(this));
+		this.addSettingTab(new RveSettingTab(this));
 
 		console.log("Loaded 'Reading View Enhancer'");
 	}

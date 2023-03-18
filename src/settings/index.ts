@@ -2,25 +2,24 @@ import { PluginSettingTab, Setting } from "obsidian";
 import ReadingViewEnhancer from "src/main";
 import { toHex } from "color2k";
 
-export interface Settings {
+export interface RveSettings {
 	caretColor: string;
 	alwaysOn: boolean;
 }
 
-export const DEFAULT_SETTINGS: Settings = {
+export const DEFAULT_SETTINGS: RveSettings = {
 	caretColor: toHex(
 		getComputedStyle(document.body).getPropertyValue("--color-accent").trim()
 	),
 	alwaysOn: false,
 };
 
-export class ReadingViewEnhancerSettingTab extends PluginSettingTab {
+export class RveSettingTab extends PluginSettingTab {
 	plugin: ReadingViewEnhancer;
 
 	constructor(plugin: ReadingViewEnhancer) {
 		super(app, plugin);
 		this.plugin = plugin;
-		console.log(document.body);
 	}
 
 	display() {
