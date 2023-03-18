@@ -1,17 +1,14 @@
-import { PluginSettingTab, Setting } from "obsidian";
-import ReadingViewEnhancer from "src/main";
+import { PluginSettingTab } from "obsidian";
+import ReadingViewEnhancer from "../main";
+import { RveSettings } from "./types";
+import CaretSettings from "./caret";
 import { toHex } from "color2k";
-
-export interface RveSettings {
-	caretColor: string;
-	alwaysOn: boolean;
-}
 
 export const DEFAULT_SETTINGS: RveSettings = {
 	caretColor: toHex(
 		getComputedStyle(document.body).getPropertyValue("--color-accent").trim()
 	),
-	alwaysOn: false,
+	alwaysEnableCaret: false,
 };
 
 export class RveSettingTab extends PluginSettingTab {
@@ -23,29 +20,15 @@ export class RveSettingTab extends PluginSettingTab {
 	}
 
 	display() {
+		const { containerEl } = this;
+
 		// Clear all first
-		this.containerEl.empty();
+		containerEl.empty();
 
-		this.addHeader();
-		this.addCaretColorSetting();
-	}
+		// Add header
+		containerEl.createEl("h1", { text: "Reading View Enhancer" });
 
-	addHeader(): void {
-		this.containerEl.createEl("h1", { text: "Reading View Enhancer" });
-	}
-
-	addCaretColorSetting(): void {
-		new Setting(this.containerEl)
-			.setName("Caret Color")
-			.setDesc("Set color of caret in reading view.")
-			.addColorPicker((color) => {
-				color.setValue(this.plugin.settings.caretColor);
-
-				// save on change
-				color.onChange((changed) => {
-					this.plugin.settings.caretColor = toHex(changed);
-					this.plugin.saveSettings();
-				});
-			});
+		// Add caret settings
+		new CaretSettings(containerEl, this.plugin);
 	}
 }

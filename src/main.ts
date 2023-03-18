@@ -1,6 +1,7 @@
 import { Plugin } from "obsidian";
 import setCommandsFor from "./commands";
-import { DEFAULT_SETTINGS, RveSettingTab, RveSettings } from "./settings";
+import { DEFAULT_SETTINGS, RveSettingTab } from "./settings";
+import { RveSettings } from "./settings/types";
 
 export default class ReadingViewEnhancer extends Plugin {
 	public settings: RveSettings;
