@@ -5,9 +5,7 @@ import CaretSettings from "./caret";
 import { toHex } from "color2k";
 
 export const DEFAULT_SETTINGS: RveSettings = {
-	caretColor: toHex(
-		getComputedStyle(document.body).getPropertyValue("--color-accent").trim()
-	),
+	caretColor: "#8B6CEF", // Obsidian default color
 	alwaysEnableCaret: false,
 };
 
@@ -17,6 +15,9 @@ export class RveSettingTab extends PluginSettingTab {
 	constructor(plugin: ReadingViewEnhancer) {
 		super(app, plugin);
 		this.plugin = plugin;
+		DEFAULT_SETTINGS.caretColor = toHex(
+			getComputedStyle(document.body).getPropertyValue("--color-accent").trim()
+		);
 	}
 
 	display() {
