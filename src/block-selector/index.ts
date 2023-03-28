@@ -1,4 +1,4 @@
-import { MarkdownPostProcessorContext } from "obsidian";
+import { MarkdownPostProcessorContext, Platform } from "obsidian";
 
 import ReadingViewEnhancer from "src/main";
 import SelectionHandler from "./selection-handler";
@@ -32,7 +32,9 @@ export default class BlockSelector {
 	}
 
 	activate() {
-		this.plugin.registerMarkdownPostProcessor(this.blockify.bind(this));
+		if (Platform.isDesktop) {
+			this.plugin.registerMarkdownPostProcessor(this.blockify.bind(this));
+		}
 	}
 
 	/**
