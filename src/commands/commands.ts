@@ -1,46 +1,24 @@
-import { Command, Workspace } from "obsidian";
-import { isReadingView } from "src/utils/mode";
-import { WorkspaceCommand, COMMAND_TYPE } from "./types";
+import { RveCommand } from ".";
+import ReadingViewEnhancer from "src/main";
 
 /**
- * Enable caret on
+ * Rerender all reading views
+ *
+ * @param plugin {ReadingViewEnhancer} Plugin instance
+ * @returns {RveCommand} Rerender all reading views command
  */
-export const enableCaret: WorkspaceCommand = {
-	type: COMMAND_TYPE.USE_WORKSPACE,
-	get: (workspace: Workspace): Command => ({
-		id: "enable-caret",
-		name: "Enable Caret",
-		checkCallback: (checking) => {
-			// if reading view is active
-			if (isReadingView(workspace)) {
-				// if checking whether to show command,
-				// return true since it's preview mode.
-				if (checking) return true;
-				// if not checking, run the command.
-				else throw new Error("Not implemented yet");
+export const rerenderAllReadingViews: RveCommand = (
+	plugin: ReadingViewEnhancer
+) => ({
+	id: "rerender-all-reading-views",
+	name: "Rerender all reading views",
+	callback: () => {
+		const { workspace } = plugin.app;
+		workspace.getLeavesOfType("markdown").forEach((leaf) => {
+			if (leaf.view.getState().mode === "preview") {
+				// @ts-ignore
+				leaf.view.previewMode?.rerender(true);
 			}
-			// if is not preview mode, do not show this command.
-			else return false;
-		},
-	}),
-};
-
-export const disableCaret: WorkspaceCommand = {
-	type: COMMAND_TYPE.USE_WORKSPACE,
-	get: (workspace: Workspace): Command => ({
-		id: "disable-caret",
-		name: "Disable Caret",
-		checkCallback: (checking) => {
-			// if reading view is active
-			if (isReadingView(workspace)) {
-				// if checking whether to show command,
-				// return true since it's preview mode.
-				if (checking) return true;
-				// if not checking, run the command.
-				else throw new Error("Not implemented yet");
-			}
-			// if is not preview mode, do not show this command.
-			else return false;
-		},
-	}),
-};
+		});
+	},
+});

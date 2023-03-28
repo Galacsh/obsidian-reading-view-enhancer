@@ -1,25 +1,44 @@
 import { PluginSettingTab } from "obsidian";
 import ReadingViewEnhancer from "../main";
-import { RveSettings } from "./types";
-import CaretSettings from "./caret";
-import { toHex } from "color2k";
+import BlockSelectorSettings from "./block";
+import MiscellaneousSettings from "./miscellaneous";
+
+export interface RveSettings {
+	blockColor: string;
+	enableBlockSelector: boolean;
+	alwaysOnCollapseIndicator: boolean;
+	preventTableOverflowing: boolean;
+	scrollableCode: boolean;
+}
 
 export const DEFAULT_SETTINGS: RveSettings = {
-	caretColor: "#8B6CEF", // Obsidian default color
-	alwaysEnableCaret: false,
+	blockColor: "#8b6cef", // Obsidian default color
+	enableBlockSelector: false,
+	alwaysOnCollapseIndicator: false,
+	preventTableOverflowing: false,
+	scrollableCode: false,
 };
 
+// ===================================================================
+
+/**
+ * Settings tab.
+ * In this tab, you can change settings.
+ *
+ * - Block color
+ * - Enable/Disable Block Selector
+ */
 export class RveSettingTab extends PluginSettingTab {
 	plugin: ReadingViewEnhancer;
 
 	constructor(plugin: ReadingViewEnhancer) {
 		super(app, plugin);
 		this.plugin = plugin;
-		DEFAULT_SETTINGS.caretColor = toHex(
-			getComputedStyle(document.body).getPropertyValue("--color-accent").trim()
-		);
 	}
 
+	/**
+	 * Displays settings tab.
+	 */
 	display() {
 		const { containerEl } = this;
 
@@ -29,7 +48,10 @@ export class RveSettingTab extends PluginSettingTab {
 		// Add header
 		containerEl.createEl("h1", { text: "Reading View Enhancer" });
 
-		// Add caret settings
-		new CaretSettings(containerEl, this.plugin);
+		// Add block selector settings
+		new BlockSelectorSettings(containerEl, this.plugin);
+
+		// Add miscellaneous settings
+		new MiscellaneousSettings(containerEl, this.plugin);
 	}
 }
