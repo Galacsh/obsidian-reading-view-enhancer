@@ -6,5 +6,5 @@
 	"description": "Enhances reading view. Use arrow keys to fold/unfold elements.",
 	"author": "Galacsh",
 	"authorUrl": "https://github.com/galacsh",
-	"isDesktopOnly": true
+	"isDesktopOnly": false
 }
