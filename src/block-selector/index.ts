@@ -32,7 +32,8 @@ export default class BlockSelector {
 	}
 
 	activate() {
-		if (Platform.isDesktop) {
+		// Block selector only works on desktop
+		if (Platform.isDesktop || Platform.isDesktopApp) {
 			this.plugin.registerMarkdownPostProcessor(this.blockify.bind(this));
 		}
 	}
