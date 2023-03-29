@@ -35,6 +35,10 @@ export class BlockColorRule extends StyleRule {
 
 	constructor() {
 		const template = `
+			.${SELECTED_BLOCK} {
+				position: relative;
+			}
+			
 			.${SELECTED_BLOCK}::before {
 				content: "";
 				position: absolute;
