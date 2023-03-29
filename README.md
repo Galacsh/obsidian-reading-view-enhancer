@@ -35,7 +35,8 @@ that are not in the DOM tree yet.
 - `ArrowUp` : select previous "Block"
 - `ArrowLeft`/`ArrowRight` : toggles fold/unfold
 
-(This feature only works on desktop.)
+❗️ This feature only works on desktop.  
+✨ This feature is inspired by Notion's block navigation.
 
 #### What is "Block"?
 
