@@ -51,6 +51,7 @@ export default class BlockColorSetting extends Setting {
 
 			this.plugin.settings.blockColor = accentColor;
 			this.plugin.saveSettings();
+			this.plugin.applyBlockColor(true);
 		});
 	}
 
