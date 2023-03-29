@@ -1,53 +1,82 @@
-# Reading View Enhancer plugin for Obsidian
+# Reading View Enhancer
 
-This is a plugin for [Obsidian](https://obsidian.md/) that enhances the reading experience in preview mode
-by adding a "collapse indicator" selector. Use arrow keys to select next/previous "collapse indicator" and
-fold/unfold easily.
-
-> 📌 Commands are only available if the current active view is in a **reading(preview)** mode.
-
-## Known Issues
-
-- [ ] **Dynamically loaded collapse indicators - not selectable**
-
-Looks like reading view uses some kind of dynamic loading.
-I update the list of **"selectable" collapse indicators** whenever there is a change in DOM. So if some collapse indicators are removed from the DOM by dynamic loading, it means that they are not selectable anymore.
-
-- [ ] **Invisible, but selectable metadata(frontmatter)**
-
-I didn't consider the `Settings > Editor > Show Frontmatter: false` option.
-Since I check the 'is-collapsed' class for collapse indicator selection, the invisible collapse indicator has become selectable.
-
-- [ ] **Lack of knowledge about Obsidian plugin development**
-
-Actually, I didn't read the [docs](https://marcus.se.net/obsidian-plugin-docs/) much. I'm on reading now!
+Reading View Enhancer is an Obsidian plugin that improves the reading experience in the reading view mode. It enhances reading view with several features to make it more convenient and comfortable.
 
 ## Features
 
-- `Reading View Enhancer: Activate selector`
-  - Start using the "collapse indicator" selector
-- `Reading View Enhancer: Deactivate selector`
-  - Turn back to default reading view by deactivating the selector
-  - By default, `Esc` deactivates the selector
-- Use arrow keys to interact with "collapse indicator"s
-  - `Arrow Up`: Select previous "collapse indicator"
-  - `Arrow Down`: Select next "collapse indicator"
-  - `Arrow Left & Right`: Toggle fold/unfold"
-- Click to select nearest "collapse indicator" from clicked position
+### Overview
 
-> Note that the change of a focus deactivates the selector.
+- **Block navigation with keyboard**
+  - `ArrowDown` : select next "Block"
+  - `ArrowUp` : select previous "Block"
+- **Fold/Unfold with keyboard**
+  - `ArrowLeft`/`ArrowRight` : Toggle fold/unfold
+    - 📌 You can also fold/unfold collapsible callouts
+- **Always on collapse indicators**
+  - Make all the 'collapse indicators' visible
+- **Prevent Table Overflowing**
+  - Make tables scrollable to prevent table overflowing
+- **Scrollable Code Block**
+  - Make code blocks scrollable instead of line breaking
+
+### Block Navigation with keyboard
+
+> ⚡️ Settings > Reading View Enhancer > Enable Block Selector
+
+You can select blocks in the reading view by clicking on them.
+When you select a block, it will be highlighted,
+and you can navigate between blocks using the arrow keys.
+
+If the selected block is too long, the plugin will automatically
+scroll to see the block's top or bottom, loading adjacent blocks
+that are not in the DOM tree yet.
+
+- `ArrowDown` : select next "Block"
+- `ArrowUp` : select previous "Block"
+- `ArrowLeft`/`ArrowRight` : toggles fold/unfold
+
+❗️ This feature only works on desktop.  
+✨ This feature is inspired by Notion's block navigation.
+
+#### What is "Block"?
+
+In this plugin, a "block" refers to an HTML element that can be
+considered a distinct unit of content within a markdown document.
+
+Such as paragraphs, headings, lists, tables, code blocks, quotes,
+media elements, and callouts are blocks.
+
+#### Block Color
+
+> ⚡️ Settings > Reading View Enhancer > Block Color
+
+You can set a color for the block highlight effect.
+
+### Always On Collapse Indicators
+
+> ⚡️ Settings > Reading View Enhancer > Always on collapse indicator
+
+By default, collapse indicators are invisible until it gets hovered.
+Using this option, you can make indicators always visible.
+
+### Prevent Table Overflowing
+
+> ⚡️ Settings > Reading View Enhancer > Prevent Table Overflowing
+
+You can make tables horizontally scrollable to prevent table overflowing.
+
+In Obsidian v1.1.16, table with a long text makes a horizontal scroll bar on the whole view,
+which makes it inconvenient in a mobile environment.
+
+### Scrollable Code
+
+> ⚡️ Settings > Reading View Enhancer > Scrollable Code
+
+You can make code blocks scrollable instead of line break.
 
 ## How to install manually?
 
 There might be various ways to install this plugin.
-
-1. Using Obsidian42-BRAT (Recommended)
-2. Using `curl`
-3. Downloading these files into `plugins/obsidian-reading-view-enhancer` folder
-
-- `main.js`
-- `styles.css`
-- `manifest.json`
 
 After installation,
 
