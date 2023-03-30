@@ -57,7 +57,8 @@ export const selectTopBlockInTheView: RveCommand = (
 		// If checking, return true
 		if (checking) return true;
 
-		// const { previewMode } = activeView;
-		throw new Error("Not implemented");
+		plugin.blockSelector.selectTopBlockInTheView(
+			activeView.previewMode.containerEl
+		);
 	},
 });
