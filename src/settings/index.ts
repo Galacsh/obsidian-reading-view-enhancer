@@ -6,6 +6,7 @@ import MiscellaneousSettings from "./miscellaneous";
 export interface RveSettings {
 	blockColor: string;
 	enableBlockSelector: boolean;
+	disableBlockSelectorOnMobile: boolean;
 	alwaysOnCollapseIndicator: boolean;
 	preventTableOverflowing: boolean;
 	scrollableCode: boolean;
@@ -14,6 +15,7 @@ export interface RveSettings {
 export const DEFAULT_SETTINGS: RveSettings = {
 	blockColor: "#8b6cef", // Obsidian default color
 	enableBlockSelector: false,
+	disableBlockSelectorOnMobile: false,
 	alwaysOnCollapseIndicator: false,
 	preventTableOverflowing: false,
 	scrollableCode: false,
