@@ -23,6 +23,8 @@ Reading View Enhancer is an Obsidian plugin that improves the reading experience
 
 > ⚡️ Settings > Reading View Enhancer > Enable Block Selector
 
+https://user-images.githubusercontent.com/78684419/228733812-26bfa11a-f246-4153-83ea-eed9aae39753.mov
+
 You can select blocks in the reading view by clicking on them.
 When you select a block, it will be highlighted,
 and you can navigate between blocks using the arrow keys.
@@ -57,11 +59,22 @@ You can set a color for the block highlight effect.
 > ⚡️ Settings > Reading View Enhancer > Always on collapse indicator
 
 By default, collapse indicators are invisible until it gets hovered.
-Using this option, you can make indicators always visible.
+
+<img width="400" alt="no-indicator" src="https://user-images.githubusercontent.com/78684419/228733972-6b364496-071b-469a-a401-656b3df27311.png">
+
+Using this option,
+
+<img width="400" alt="turn-on-indicator" src="https://user-images.githubusercontent.com/78684419/228734050-54d19f73-35cd-4eba-ae33-8d91f7bed180.png">
+
+you can make indicators always visible.
+
+<img width="400" alt="has-indicator" src="https://user-images.githubusercontent.com/78684419/228734081-99e58a5d-b6b2-4418-92f1-b47db403e7ae.png">
 
 ### Prevent Table Overflowing
 
 > ⚡️ Settings > Reading View Enhancer > Prevent Table Overflowing
+
+https://user-images.githubusercontent.com/78684419/228734185-aca9e6ee-711e-4929-8e10-a269a43b97f8.mov
 
 You can make tables horizontally scrollable to prevent table overflowing.
 
@@ -72,7 +85,17 @@ which makes it inconvenient in a mobile environment.
 
 > ⚡️ Settings > Reading View Enhancer > Scrollable Code
 
+By default, codes are placed in new line when it's too long.
+
+<img width="400" alt="before-code-scroll" src="https://user-images.githubusercontent.com/78684419/228734385-2cf4650a-0559-48c8-a1ad-3229f68b40a1.png">
+
+With this option,
+
+<img width="400" alt="turn-on-code-scroll" src="https://user-images.githubusercontent.com/78684419/228734481-5ed5994c-ca63-4777-9341-8da105afcc94.png">
+
 You can make code blocks scrollable instead of line break.
+
+<img width="400" alt="code-scroll" src="https://user-images.githubusercontent.com/78684419/228734516-77f5446f-2669-43d5-8428-65e400e7a00d.png">
 
 ## How to install manually?
 
