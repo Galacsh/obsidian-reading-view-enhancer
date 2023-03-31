@@ -31,6 +31,9 @@ export default class BlockSelector {
 		this.selectionHandler = new SelectionHandler();
 	}
 
+	/**
+	 * Activate BlockSelector
+	 */
 	activate() {
 		// Block selector only works on desktop
 		if (Platform.isDesktop || Platform.isDesktopApp) {
@@ -39,11 +42,23 @@ export default class BlockSelector {
 	}
 
 	/**
+	 * Select top block in the view
+	 *
+	 * @param viewContainer {HTMLElement} View container element
+	 */
+	selectTopBlockInTheView(viewContainer: HTMLElement) {
+		this.selectionHandler.selectTopBlockInTheView(viewContainer);
+	}
+
+	/**
 	 * Blockify some elements.
 	 * If container is not initialized, initialize it.
 	 * Transform some elements to block elements.
 	 */
-	blockify(element: HTMLElement, context: MarkdownPostProcessorContext) {
+	private blockify(
+		element: HTMLElement,
+		context: MarkdownPostProcessorContext
+	) {
 		if (this.plugin.settings.enableBlockSelector) {
 			// @ts-ignore
 			const container = context?.containerEl;
@@ -98,7 +113,7 @@ export default class BlockSelector {
 	 *
 	 * @param element {HTMLElement} Element to start searching
 	 */
-	elementsToBlocks(element: HTMLElement) {
+	private elementsToBlocks(element: HTMLElement) {
 		const elements = element.querySelectorAll(BLOCKS.join(", "));
 		elements.forEach((el) => {
 			if (el.hasClass(FRONTMATTER)) return;

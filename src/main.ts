@@ -7,6 +7,7 @@ import BlockSelector from "./block-selector";
 export default class ReadingViewEnhancer extends Plugin {
 	settings: RveSettings;
 	styles: RveStyles;
+	blockSelector: BlockSelector;
 
 	/**
 	 * On load,
@@ -24,7 +25,8 @@ export default class ReadingViewEnhancer extends Plugin {
 		this.app.workspace.onLayoutReady(() => this.applySettingsToStyles());
 
 		// Activate block selector.
-		new BlockSelector(this).activate();
+		this.blockSelector = new BlockSelector(this);
+		this.blockSelector.activate();
 
 		// Register commands
 		new Commands(this).register();
