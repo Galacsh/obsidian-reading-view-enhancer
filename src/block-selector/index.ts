@@ -47,7 +47,7 @@ export default class BlockSelector {
 	 * @param viewContainer {HTMLElement} View container element
 	 */
 	selectTopBlockInTheView(viewContainer: HTMLElement) {
-		throw new Error("Not implemented");
+		this.selectionHandler.selectTopBlockInTheView(viewContainer);
 	}
 
 	/**
