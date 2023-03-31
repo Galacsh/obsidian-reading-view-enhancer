@@ -2,6 +2,8 @@
 
 The Reading View Enhancer is an Obsidian plugin designed to improve the reading experience in Obsidian's reading view mode. It provides several features aimed at making the reading view more convenient and comfortable.
 
+<br/>
+
 ## Features
 
 ### Overview
@@ -18,6 +20,8 @@ The Reading View Enhancer is an Obsidian plugin designed to improve the reading 
   - Make tables scrollable to prevent overflowing
 - **Scrollable code blocks**
   - Make code blocks scrollable instead of line-wrapping
+
+<br/>
 
 ### Keyboard Block Navigation
 
@@ -55,6 +59,8 @@ and callouts are examples of blocks.
 
 You can set a custom color for the block highlight effect.
 
+<br/>
+
 ### Always-visible Collapse Indicators
 
 > ⚡️ Settings > Reading View Enhancer > Always on collapse indicator
@@ -71,6 +77,8 @@ keeps indicators always visible.
 
 <img width="400" alt="has-indicator" src="https://user-images.githubusercontent.com/78684419/228734081-99e58a5d-b6b2-4418-92f1-b47db403e7ae.png">
 
+<br/>
+
 ### Table Overflow Prevention
 
 > ⚡️ Settings > Reading View Enhancer > Prevent Table Overflowing
@@ -82,6 +90,8 @@ Enable horizontally scrollable tables to prevent table overflow.
 In Obsidian v1.1.16, tables having a word longer than the viewport's width
 will create a horizontal scrollbar across the entire view,
 which can be inconvenient on mobile devices.
+
+<br/>
 
 ### Scrollable Code Blocks
 
@@ -101,6 +111,8 @@ You can make code blocks scrollable instead of line break.
 
 <img width="400" alt="code-scroll" src="https://user-images.githubusercontent.com/78684419/228734516-77f5446f-2669-43d5-8428-65e400e7a00d.png">
 
+<br/>
+
 ## How to install manually?
 
 There might be various ways to install this plugin.
@@ -110,6 +122,8 @@ After installation,
 1. Go to `Settings > Community Plugins > Installed plugins`
 2. Refresh the list
 3. Turn on the switch of "Reading View Enhancer" to enable the plugin
+
+<br/>
 
 ### Using Obsidian42-BRAT (Recommended)
 
@@ -123,6 +137,8 @@ By using [Obsidian42-BRAT](https://obsidian.md/plugins?id=obsidian42-brat), you 
 6. After installation is done, go to `Settings > Community Plugins > Installed plugins`
 7. Refresh the list
 8. Turn on the switch of "Reading View Enhancer" to enable the plugin
+
+<br/>
 
 ### Using `curl`
 
@@ -139,6 +155,8 @@ curl -OL https://github.com/Galacsh/obsidian-reading-view-enhancer/releases/down
 curl -OL https://github.com/Galacsh/obsidian-reading-view-enhancer/releases/download/[RELEASE_VERSION]/styles.css
 curl -OL https://github.com/Galacsh/obsidian-reading-view-enhancer/releases/download/[RELEASE_VERSION]/manifest.json
 ```
+
+<br/>
 
 ### By downloading manually
 
