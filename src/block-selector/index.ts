@@ -35,10 +35,7 @@ export default class BlockSelector {
 	 * Activate BlockSelector
 	 */
 	activate() {
-		// Block selector only works on desktop
-		if (Platform.isDesktop || Platform.isDesktopApp) {
-			this.plugin.registerMarkdownPostProcessor(this.blockify.bind(this));
-		}
+		this.plugin.registerMarkdownPostProcessor(this.blockify.bind(this));
 	}
 
 	/**
@@ -59,15 +56,24 @@ export default class BlockSelector {
 		element: HTMLElement,
 		context: MarkdownPostProcessorContext
 	) {
-		if (this.plugin.settings.enableBlockSelector) {
-			// @ts-ignore
-			const container = context?.containerEl;
-			if (this.isContainerNotInitialized(container)) {
-				this.initializeContainer(container);
-			}
+		// If block selector is disabled, do nothing
+		if (!this.plugin.settings.enableBlockSelector) return;
 
-			this.elementsToBlocks(element);
+		// If it's mobile but block selector is disabled on mobile, do nothing
+		if (
+			(Platform.isMobile || Platform.isMobileApp) &&
+			this.plugin.settings.disableBlockSelectorOnMobile
+		) {
+			return;
 		}
+
+		// @ts-ignore
+		const container = context?.containerEl;
+		if (this.isContainerNotInitialized(container)) {
+			this.initializeContainer(container);
+		}
+
+		this.elementsToBlocks(element);
 	}
 
 	/**
