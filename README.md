@@ -152,7 +152,6 @@ mkdir obsidian-reading-view-enhancer
 cd obsidian-reading-view-enhancer
 # Download
 curl -OL https://github.com/Galacsh/obsidian-reading-view-enhancer/releases/download/[RELEASE_VERSION]/main.js
-curl -OL https://github.com/Galacsh/obsidian-reading-view-enhancer/releases/download/[RELEASE_VERSION]/styles.css
 curl -OL https://github.com/Galacsh/obsidian-reading-view-enhancer/releases/download/[RELEASE_VERSION]/manifest.json
 ```
 
@@ -162,7 +161,6 @@ curl -OL https://github.com/Galacsh/obsidian-reading-view-enhancer/releases/down
 
 1. Download this files from the latest [release](https://github.com/Galacsh/obsidian-reading-view-enhancer/releases)
    - `main.js`
-   - `styles.css`
    - `manifest.json`
 2. Create a directory(`obsidian-reading-view-enhancer`) inside `.obsidian/plugins`
 3. Move files to your vault's `.obsidian/plugins/obsidian-reading-view-enhancer` folder
