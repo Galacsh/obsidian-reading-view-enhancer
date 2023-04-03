@@ -35,30 +35,48 @@ export const selectTopBlockInTheView: RveCommand = (
 ) => ({
 	id: "select-top-block-in-the-view",
 	name: "Select Top Block in the View",
-	checkCallback: (checking) => {
-		// If active view is a reading view
-		const { workspace } = plugin.app;
-		const activeView = workspace.getActiveViewOfType(MarkdownView);
-
-		// If active view is not a reading view, do not show the command
-		if (activeView?.getState().mode !== "preview") return false;
-
-		// If block selector is disabled, do not show the command
-		if (!plugin.settings.enableBlockSelector) return false;
-
-		// If it's mobile but block selector is disabled on mobile, do not show the command
-		if (
-			(Platform.isMobile || Platform.isMobileApp) &&
-			plugin.settings.disableBlockSelectorOnMobile
-		) {
-			return false;
+	checkCallback: (checking: boolean): boolean => {
+		// If checking is set to true, perform a preliminary check.
+		if (checking) {
+			if (isNotReadingView(plugin)) return false;
+			else if (isNotEnabled(plugin)) return false;
+			else if (isMobileAndDisabled(plugin)) return false;
+			else return true;
 		}
+		// If checking is set to false, perform an action.
+		else {
+			const container = getReadingViewContainer(plugin);
+			if (container) {
+				plugin.blockSelector.selectTopBlockInTheView(container);
+			}
 
-		// If checking, return true
-		if (checking) return true;
-
-		plugin.blockSelector.selectTopBlockInTheView(
-			activeView.previewMode.containerEl
-		);
+			return true;
+		}
 	},
 });
+
+const isNotReadingView = (plugin: ReadingViewEnhancer) => {
+	const activeView = getActiveView(plugin);
+	return activeView?.getState().mode !== "preview";
+};
+
+const isNotEnabled = (plugin: ReadingViewEnhancer) => {
+	return !plugin.settings.enableBlockSelector;
+};
+
+const isMobileAndDisabled = (plugin: ReadingViewEnhancer) => {
+	return (
+		(Platform.isMobile || Platform.isMobileApp) &&
+		plugin.settings.disableBlockSelectorOnMobile
+	);
+};
+
+const getReadingViewContainer = (plugin: ReadingViewEnhancer) => {
+	const activeView = getActiveView(plugin);
+	return activeView?.previewMode.containerEl;
+};
+
+const getActiveView = (plugin: ReadingViewEnhancer) => {
+	const { workspace } = plugin.app;
+	return workspace.getActiveViewOfType(MarkdownView);
+};
