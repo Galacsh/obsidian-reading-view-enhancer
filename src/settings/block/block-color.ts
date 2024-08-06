@@ -13,7 +13,7 @@ export default class BlockColorSetting extends Setting {
 		super(settingsTabEl);
 		this.plugin = plugin;
 
-		this.setName("Block Color")
+		this.setName("Block color")
 			.setDesc(
 				"Set background color of the block in reading view. Transparency will be set automatically",
 			)
