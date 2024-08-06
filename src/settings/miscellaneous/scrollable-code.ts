@@ -11,7 +11,7 @@ export default class ScrollableCodeSetting extends Setting {
 		super(containerEl);
 		this.plugin = plugin;
 
-		this.setName("Scrollable Code")
+		this.setName("Scrollable code")
 			.setDesc("Make code blocks scrollable instead of line break.")
 			.addToggle((toggle) => this.setCodeScrollable(toggle));
 	}

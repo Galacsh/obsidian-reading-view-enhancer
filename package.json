@@ -1,7 +1,7 @@
 {
 	"name": "reading-view-enhancer",
 	"version": "0.1.4",
-	"description": "This is a Obsidian plugin that enhances reading view. Use arrow keys to fold/unfold elements.",
+	"description": "This is a Obsidian plugin that enhances reading view. Use arrow keys to navigate between blocks or toggle collapse.",
 	"main": "main.js",
 	"scripts": {
 		"dev": "node esbuild.config.mjs",

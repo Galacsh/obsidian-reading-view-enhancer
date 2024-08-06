@@ -3,7 +3,7 @@
 	"name": "Reading View Enhancer",
 	"version": "0.1.4",
 	"minAppVersion": "1.0.0",
-	"description": "Enhances reading view. Use arrow keys to fold/unfold elements.",
+	"description": "Enhances reading view. Use arrow keys to navigate between blocks or toggle collapse.",
 	"author": "Galacsh",
 	"authorUrl": "https://github.com/galacsh",
 	"isDesktopOnly": false

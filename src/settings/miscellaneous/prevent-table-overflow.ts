@@ -11,11 +11,11 @@ export default class PreventTableOverflowingSetting extends Setting {
 		super(containerEl);
 		this.plugin = plugin;
 
-		this.setName("Prevent Table Overflowing")
+		this.setName("Prevent table overflow")
 			.setDesc(
-				"Make tables scrollable to prevent table overflowing. " +
+				"Make tables scrollable to prevent table overflow. " +
 					"In Obsidian v1.1.16, table with a long text makes a horizontal scroll bar on the whole view. " +
-					"This setting prevents that."
+					"This setting prevents that.",
 			)
 			.addToggle((toggle) => this.preventTableOverflowing(toggle));
 	}

@@ -85,7 +85,7 @@ export default class ReadingViewEnhancer extends Plugin {
 	/**
 	 * Apply block color
 	 *
-	 * @param isImmediate {boolean} Whether to apply styles immediately
+	 * @param isImmediate Whether to apply styles immediately
 	 */
 	applyBlockColor(isImmediate = false) {
 		const blockColor = this.styles.of("block-color") as BlockColorRule;
@@ -96,7 +96,7 @@ export default class ReadingViewEnhancer extends Plugin {
 	/**
 	 * Apply always on collapse indicator
 	 *
-	 * @param isImmediate {boolean} Whether to apply styles immediately
+	 * @param isImmediate Whether to apply styles immediately
 	 */
 	applyAlwaysOnCollapse(isImmediate = false) {
 		this.styles.of("collapse-indicator").isActive =
@@ -107,7 +107,7 @@ export default class ReadingViewEnhancer extends Plugin {
 	/**
 	 * Apply prevent table overflowing
 	 *
-	 * @param isImmediate {boolean} Whether to apply styles immediately
+	 * @param isImmediate Whether to apply styles immediately
 	 */
 	applyPreventTableOverflowing(isImmediate = false) {
 		this.styles.of("prevent-table-overflowing").isActive =
@@ -118,7 +118,7 @@ export default class ReadingViewEnhancer extends Plugin {
 	/**
 	 * Apply scrollable code
 	 *
-	 * @param isImmediate {boolean} Whether to apply styles immediately
+	 * @param isImmediate Whether to apply styles immediately
 	 */
 	applyScrollableCode(isImmediate = false) {
 		this.styles.of("scrollable-code").isActive = this.settings.scrollableCode;

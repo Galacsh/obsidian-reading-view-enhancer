@@ -1,6 +1,7 @@
 # Reading View Enhancer Plugin
 
-The Reading View Enhancer is an Obsidian plugin designed to improve the reading experience in Obsidian's reading view mode. It provides several features aimed at making the reading view more convenient and comfortable.
+The Reading View Enhancer is an Obsidian plugin designed to improve the reading experience in Obsidian's reading view mode.
+It provides several features aimed at making the reading view more convenient and comfortable.
 
 <br/>
 
@@ -9,11 +10,11 @@ The Reading View Enhancer is an Obsidian plugin designed to improve the reading 
 ### Overview
 
 - **Keyboard block navigation**
-  - `ArrowDown`: Select the next block
-  - `ArrowUp`: Select the previous block
-- **Keyboard fold/unfold toggling**
-  - `ArrowLeft`/`ArrowRight`: Toggle fold/unfold
-    - 📌 Collapsible callouts can also be folded/unfolded
+  - Select the next block
+  - Select the previous block
+- **Toggle collapse with keyboard**
+  - Toggle collapse
+    - 📌 Collapsible callouts can also be handled
 - **Always-visible collapse indicators**
   - Keep all collapse indicators visible
 - **Table overflow prevention**
@@ -39,9 +40,9 @@ which allows you to assign a hotkey for keyboard control.
 If a selected block is too long, the plugin will automatically scroll to display
 the block's top or bottom, loading adjacent blocks that are not yet in the DOM tree.
 
-- `ArrowDown`: Select the next block
-- `ArrowUp`: Select the previous block
-- `ArrowLeft`/`ArrowRight`: Toggle fold/unfold
+- `ArrowDown | j`: Select the next block
+- `ArrowUp | k`: Select the previous block
+- `ArrowLeft | h | ArrowRight | l`: Toggle collapse
 
 ❗️ To disable this feature only on mobile,
 enable the 'Disable Block Selector on Mobile' option in settings.
@@ -50,12 +51,13 @@ enable the 'Disable Block Selector on Mobile' option in settings.
 
 In this plugin, a "block" refers to an HTML element that can be
 considered a distinct content unit within a markdown document.
+
 Paragraphs, headings, lists, tables, code blocks, quotes, media elements,
 and callouts are examples of blocks.
 
 #### Block Color
 
-> ⚡️ Settings > Reading View Enhancer > Block Color
+> ⚡️ Settings > Reading View Enhancer > Block color
 
 You can set a custom color for the block highlight effect.
 
@@ -81,7 +83,7 @@ keeps indicators always visible.
 
 ### Table Overflow Prevention
 
-> ⚡️ Settings > Reading View Enhancer > Prevent Table Overflowing
+> ⚡️ Settings > Reading View Enhancer > Prevent table overflow
 
 https://user-images.githubusercontent.com/78684419/228734185-aca9e6ee-711e-4929-8e10-a269a43b97f8.mov
 
@@ -95,7 +97,7 @@ which can be inconvenient on mobile devices.
 
 ### Scrollable Code Blocks
 
-> ⚡️ Settings > Reading View Enhancer > Scrollable Code
+> ⚡️ Settings > Reading View Enhancer > Scrollable code
 
 This feature makes code blocks scrollable, rather than using line-wrapping.
 
@@ -115,18 +117,6 @@ You can make code blocks scrollable instead of line break.
 
 ## How to install manually?
 
-There might be various ways to install this plugin.
-
-After installation,
-
-1. Go to `Settings > Community Plugins > Installed plugins`
-2. Refresh the list
-3. Turn on the switch of "Reading View Enhancer" to enable the plugin
-
-<br/>
-
-### Using Obsidian42-BRAT (Recommended)
-
 By using [Obsidian42-BRAT](https://obsidian.md/plugins?id=obsidian42-brat), you could easily install & update this plugin.
 
 1. Install **Obsidian42-BRAT**
@@ -134,33 +124,6 @@ By using [Obsidian42-BRAT](https://obsidian.md/plugins?id=obsidian42-brat), you 
 3. Go to Obsidian42-BRAT options page
 4. Beta plugins list > `Add Beta plugin`
 5. Paste this `https://github.com/Galacsh/obsidian-reading-view-enhancer`
-6. After installation is done, go to `Settings > Community Plugins > Installed plugins`
+6. Go to `Settings > Community Plugins > Installed plugins`
 7. Refresh the list
 8. Turn on the switch of "Reading View Enhancer" to enable the plugin
-
-<br/>
-
-### Using `curl`
-
-Before to run the code, make sure to change `[VAULT]` and `[RELEASE_VERSION]` into a real value.
-
-```shell
-# Go to your vault's plugins folder
-cd [VAULT]/.obsidian/plugins
-# Make a directory
-mkdir obsidian-reading-view-enhancer
-cd obsidian-reading-view-enhancer
-# Download
-curl -OL https://github.com/Galacsh/obsidian-reading-view-enhancer/releases/download/[RELEASE_VERSION]/main.js
-curl -OL https://github.com/Galacsh/obsidian-reading-view-enhancer/releases/download/[RELEASE_VERSION]/manifest.json
-```
-
-<br/>
-
-### By downloading manually
-
-1. Download this files from the latest [release](https://github.com/Galacsh/obsidian-reading-view-enhancer/releases)
-   - `main.js`
-   - `manifest.json`
-2. Create a directory(`obsidian-reading-view-enhancer`) inside `.obsidian/plugins`
-3. Move files to your vault's `.obsidian/plugins/obsidian-reading-view-enhancer` folder

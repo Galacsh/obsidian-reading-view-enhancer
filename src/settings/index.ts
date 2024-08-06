@@ -1,24 +1,39 @@
 import { PluginSettingTab } from "obsidian";
 import ReadingViewEnhancer from "../main";
 import BlockSelectorSettings from "./block";
+import KeysSettings from "./keys";
 import MiscellaneousSettings from "./miscellaneous";
 
 export interface RveSettings {
-	blockColor: string;
+	blockColor: {
+		color: string;
+		transparency: number;
+	};
 	enableBlockSelector: boolean;
 	disableBlockSelectorOnMobile: boolean;
 	alwaysOnCollapseIndicator: boolean;
 	preventTableOverflowing: boolean;
 	scrollableCode: boolean;
+	nextBlockKeys: string;
+	prevBlockKeys: string;
+	toggleCollapseKeys: string;
+	deselectKeys: string;
 }
 
 export const DEFAULT_SETTINGS: RveSettings = {
-	blockColor: "#8b6cef", // Obsidian default color
-	enableBlockSelector: false,
+	blockColor: {
+		color: "rgba(139, 108, 239, 1)", // Obsidian default color
+		transparency: 20,
+	},
+	enableBlockSelector: true,
 	disableBlockSelectorOnMobile: false,
 	alwaysOnCollapseIndicator: false,
 	preventTableOverflowing: false,
 	scrollableCode: false,
+	nextBlockKeys: "ArrowDown j",
+	prevBlockKeys: "ArrowUp k",
+	toggleCollapseKeys: "ArrowLeft ArrowRight h l",
+	deselectKeys: "Escape",
 };
 
 // ===================================================================
@@ -47,13 +62,13 @@ export class RveSettingTab extends PluginSettingTab {
 		// Clear all first
 		containerEl.empty();
 
-		// Add header
-		containerEl.createEl("h1", { text: "Reading View Enhancer" });
-
 		// Add block selector settings
 		new BlockSelectorSettings(containerEl, this.plugin);
 
 		// Add miscellaneous settings
 		new MiscellaneousSettings(containerEl, this.plugin);
+
+		// Add keys settings
+		new KeysSettings(containerEl, this.plugin);
 	}
 }

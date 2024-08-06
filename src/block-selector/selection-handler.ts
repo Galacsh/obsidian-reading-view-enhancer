@@ -1,3 +1,5 @@
+import ReadingViewEnhancer from "src/main";
+import { DEFAULT_SETTINGS } from "src/settings";
 import { BLOCK_ATTR, COLLAPSE_INDICATORS, SELECTED_BLOCK } from "../constants";
 import {
 	findNextBlock,
@@ -14,9 +16,17 @@ import {
  */
 export default class SelectionHandler {
 	selectedBlock: HTMLElement | null;
+	nextBlockKeys: string[];
+	prevBlockKeys: string[];
+	toggleCollapseKeys: string[];
+	deselectKeys: string[];
 
-	constructor() {
+	constructor(plugin: ReadingViewEnhancer) {
 		this.selectedBlock = null;
+		this.nextBlockKeys = plugin.settings.nextBlockKeys.split(" ");
+		this.prevBlockKeys = plugin.settings.prevBlockKeys.split(" ");
+		this.toggleCollapseKeys = plugin.settings.toggleCollapseKeys.split(" ");
+		this.deselectKeys = plugin.settings.deselectKeys.split(" ");
 	}
 
 	/**
@@ -31,12 +41,10 @@ export default class SelectionHandler {
 	}
 
 	/**
-	 * Unselect block element.
+	 * Deselect block element.
 	 * If there is no selected block, do nothing.
-	 *
-	 * @param block {HTMLElement} Block element
 	 */
-	unselect() {
+	deselect() {
 		if (this.selectedBlock) {
 			this.selectedBlock.removeClass(SELECTED_BLOCK);
 			this.selectedBlock.blur();
@@ -58,33 +66,28 @@ export default class SelectionHandler {
 	}
 
 	/**
-	 * On keydown, navigate between blocks or fold/unfold blocks.
-	 *
-	 * - `ArrowDown`: Select next block
-	 * - `ArrowUp`: Select previous block
-	 * - `ArrowLeft` & `ArrowRight`: Fold/Unfold block
+	 * On keydown, navigate between blocks or toggle collapse.
 	 *
 	 * If selected block is too long,
 	 * `ArrowDown` and `ArrowUp` scrolls to see the element's bottom or top.
 	 * This is for loading adjacent blocks which are not in the DOM tree.
 	 *
 	 * @param e {KeyboardEvent} Keyboard event
-	 * @param scrollable {HTMLElement} Scrollable parent element
 	 */
 	onKeyDown(e: KeyboardEvent) {
 		const block = e.target as HTMLElement;
 
-		if (e.key === "ArrowDown") {
+		if (this.nextBlockKeys.includes(e.key)) {
 			e.preventDefault();
 			this.selectNextBlockOrScroll(block);
-		} else if (e.key === "ArrowUp") {
+		} else if (this.prevBlockKeys.includes(e.key)) {
 			e.preventDefault();
 			this.selectPreviousBlockOrScroll(block);
-		} else if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
+		} else if (this.toggleCollapseKeys.includes(e.key)) {
 			e.preventDefault();
-			this.toggleFold(block);
-		} else if (e.key === "Escape") {
-			this.unselect();
+			this.toggleCollapse(block);
+		} else if (this.deselectKeys.includes(e.key)) {
+			this.deselect();
 		}
 	}
 
@@ -143,13 +146,13 @@ export default class SelectionHandler {
 	}
 
 	/**
-	 * Fold/Unfold block.
+	 * Toggle collapse.
 	 *
-	 * @param block {HTMLElement} Block element
+	 * @param block Block element
 	 */
-	private toggleFold(block: HTMLElement) {
+	private toggleCollapse(block: HTMLElement) {
 		const collapseIndicator = block.querySelector(
-			COLLAPSE_INDICATORS.join(",")
+			COLLAPSE_INDICATORS.join(","),
 		) as HTMLElement;
 		if (collapseIndicator) {
 			collapseIndicator.click();

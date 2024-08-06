@@ -18,7 +18,7 @@ class StyleRule {
 	/**
 	 * Get the rule after injecting variables
 	 *
-	 * @returns {string} The rule
+	 * @returns The rule
 	 */
 	getRule() {
 		return this.injectVariables(this.template);
@@ -31,27 +31,35 @@ class StyleRule {
  * Accepts a block color and injects it into the template.
  */
 export class BlockColorRule extends StyleRule {
-	private blockColor: string;
+	private color: string;
+	private transparency: number;
 
 	constructor() {
 		const template = `
 			.${SELECTED_BLOCK} {
 				position: relative;
+				z-index: 0;
 			}
 			
 			.${SELECTED_BLOCK}::before {
 				content: "";
 				position: absolute;
+				z-index: -1;
 				top: 0;
 				left: 0;
 				width: 100%;
 				height: 100%;
 				pointer-events: none;
-				background-color: {{BLOCK_COLOR}}1a;
+				background-color: {{BLOCK_COLOR}};
 			}
 		`;
 		super(template, (template: string) => {
-			return template.replace("{{BLOCK_COLOR}}", this.blockColor);
+			const percentage = this.transparency / 100;
+			const transparencyApplied = this.color.replace(
+				/\d+\s*\)$/,
+				percentage + ")",
+			);
+			return template.replace("{{BLOCK_COLOR}}", transparencyApplied);
 		});
 
 		this.isActive = true;
@@ -62,8 +70,9 @@ export class BlockColorRule extends StyleRule {
 	 *
 	 * @param blockColor {string} The block color
 	 */
-	set(blockColor: string) {
-		this.blockColor = blockColor;
+	set(blockColor: { color: string; transparency: number }) {
+		this.color = blockColor.color;
+		this.transparency = blockColor.transparency;
 	}
 }
 
@@ -163,8 +172,8 @@ export default class RveStyles {
 	/**
 	 * Get a rule by key
 	 *
-	 * @param rule {RuleKey} rule's key
-	 * @returns {StyleRule} One of the rules
+	 * @param rule rule's key
+	 * @returns One of the rules
 	 */
 	of(rule: RuleKey) {
 		return this.rules[rule];

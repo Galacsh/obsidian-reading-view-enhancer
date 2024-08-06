@@ -8,7 +8,7 @@ import ScrollableCodeSetting from "./scrollable-code";
  */
 export default class MiscellaneousSettings {
 	constructor(containerEl: HTMLElement, plugin: ReadingViewEnhancer) {
-		containerEl.createEl("h2", { text: "Miscellaneous" });
+		containerEl.createEl("h1", { text: "Miscellaneous" });
 		new AlwaysOnCollapseIndicatorSetting(containerEl, plugin);
 		new PreventTableOverflowingSetting(containerEl, plugin);
 		new ScrollableCodeSetting(containerEl, plugin);
