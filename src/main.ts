@@ -79,6 +79,7 @@ export default class ReadingViewEnhancer extends Plugin {
 		this.applyAlwaysOnCollapse();
 		this.applyPreventTableOverflowing();
 		this.applyScrollableCode();
+		this.applyCollapseIndicatorOnTheRightSide();
 		this.styles.apply();
 	}
 
@@ -99,8 +100,19 @@ export default class ReadingViewEnhancer extends Plugin {
 	 * @param isImmediate Whether to apply styles immediately
 	 */
 	applyAlwaysOnCollapse(isImmediate = false) {
-		this.styles.of("collapse-indicator").isActive =
+		this.styles.of("collapse-indicator-always-on").isActive =
 			this.settings.alwaysOnCollapseIndicator;
+		if (isImmediate) this.styles.apply();
+	}
+
+	/**
+	 * Apply collapse indicator on the right side
+	 *
+	 * @param isImmediate Whether to apply styles immediately
+	 */
+	applyCollapseIndicatorOnTheRightSide(isImmediate = false) {
+		this.styles.of("collapse-indicator-on-the-right-side").isActive =
+			this.settings.collapseIndicatorOnTheRightSide;
 		if (isImmediate) this.styles.apply();
 	}
 

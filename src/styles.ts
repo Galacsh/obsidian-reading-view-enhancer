@@ -81,11 +81,33 @@ export class BlockColorRule extends StyleRule {
  *
  * No variables to inject.
  */
-export class CollapseIndicatorRule extends StyleRule {
+export class CollapseIndicatorAlwaysOnRule extends StyleRule {
 	constructor() {
 		const template = `
 			.markdown-preview-section .collapse-indicator {
 				opacity: 1;
+			}
+		`;
+		super(template, (template: string) => template);
+	}
+}
+
+/**
+ * Collapse indicator on the right side rule.
+ *
+ * No variables to inject.
+ */
+export class CollapseIndicatorOnTheRightSideRule extends StyleRule {
+	constructor() {
+		const template = `
+			.markdown-preview-section>div:not([class="markdown-preview-pusher"]),
+			.markdown-preview-section>div:not([class="mod-header"]) {
+					position: relative;
+			}
+
+			.markdown-preview-section .collapse-indicator {
+					right: -1rem;
+					padding-inline-end: 0;
 			}
 		`;
 		super(template, (template: string) => template);
@@ -138,7 +160,8 @@ export class ScrollableCodeRule extends StyleRule {
 
 type RuleKey =
 	| "block-color"
-	| "collapse-indicator"
+	| "collapse-indicator-always-on"
+	| "collapse-indicator-on-the-right-side"
 	| "prevent-table-overflowing"
 	| "scrollable-code";
 
@@ -156,7 +179,9 @@ export default class RveStyles {
 
 		this.rules = {
 			"block-color": new BlockColorRule(),
-			"collapse-indicator": new CollapseIndicatorRule(),
+			"collapse-indicator-always-on": new CollapseIndicatorAlwaysOnRule(),
+			"collapse-indicator-on-the-right-side":
+				new CollapseIndicatorOnTheRightSideRule(),
 			"prevent-table-overflowing": new PreventTableOverflowingRule(),
 			"scrollable-code": new ScrollableCodeRule(),
 		};

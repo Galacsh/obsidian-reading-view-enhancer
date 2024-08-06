@@ -1,5 +1,4 @@
 import ReadingViewEnhancer from "src/main";
-import { DEFAULT_SETTINGS } from "src/settings";
 import { BLOCK_ATTR, COLLAPSE_INDICATORS, SELECTED_BLOCK } from "../constants";
 import {
 	findNextBlock,

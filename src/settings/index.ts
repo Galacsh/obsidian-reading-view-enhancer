@@ -14,6 +14,8 @@ export interface RveSettings {
 	alwaysOnCollapseIndicator: boolean;
 	preventTableOverflowing: boolean;
 	scrollableCode: boolean;
+	autoSelectTopBlock: boolean;
+	collapseIndicatorOnTheRightSide: boolean;
 	nextBlockKeys: string;
 	prevBlockKeys: string;
 	toggleCollapseKeys: string;
@@ -30,6 +32,8 @@ export const DEFAULT_SETTINGS: RveSettings = {
 	alwaysOnCollapseIndicator: false,
 	preventTableOverflowing: false,
 	scrollableCode: false,
+	autoSelectTopBlock: false,
+	collapseIndicatorOnTheRightSide: false,
 	nextBlockKeys: "ArrowDown j",
 	prevBlockKeys: "ArrowUp k",
 	toggleCollapseKeys: "ArrowLeft ArrowRight h l",

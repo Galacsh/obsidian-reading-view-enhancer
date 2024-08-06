@@ -1,8 +1,13 @@
-import { MarkdownPostProcessorContext, Platform } from "obsidian";
+import { MarkdownPostProcessorContext, Platform, MarkdownView } from "obsidian";
 
 import ReadingViewEnhancer from "src/main";
 import SelectionHandler from "./selection-handler";
 import { BLOCKS, BLOCK_ATTR, BLOCK_SELECTOR, FRONTMATTER } from "../constants";
+import {
+	getActiveView,
+	getReadingViewContainer,
+	isReadingView,
+} from "src/utils";
 
 /**
  * BlockSelector enables to navigate between blocks and toggle collapse.
@@ -13,7 +18,7 @@ import { BLOCKS, BLOCK_ATTR, BLOCK_SELECTOR, FRONTMATTER } from "../constants";
  * You can select a block by clicking on it and then use arrow keys to navigate between blocks.
  * For selected block, the background color will be changed.
  * You can also use `ArrowLeft` and `ArrowRight` to toggle collapse.
- * Collapsable blocks have `collapse-indicator` or `callout-fold` class.
+ * Collapsible blocks have `collapse-indicator` or `callout-fold` class.
  */
 export default class BlockSelector {
 	plugin: ReadingViewEnhancer;
@@ -36,6 +41,30 @@ export default class BlockSelector {
 	 */
 	activate() {
 		this.plugin.registerMarkdownPostProcessor(this.blockify.bind(this));
+		this.plugin.registerEvent(
+			this.plugin.app.workspace.on(
+				"layout-change",
+				this.autoSelectTopBlock.bind(this),
+			),
+		);
+		this.plugin.registerEvent(
+			this.plugin.app.workspace.on(
+				"active-leaf-change",
+				this.autoSelectTopBlock.bind(this),
+			),
+		);
+	}
+
+	autoSelectTopBlock() {
+		if (!this.plugin.settings.autoSelectTopBlock) return;
+
+		const view = getActiveView(this.plugin);
+		if (isReadingView(view)) {
+			const containerEl = getReadingViewContainer(view);
+			if (containerEl) {
+				this.selectTopBlockInTheView(containerEl);
+			}
+		}
 	}
 
 	/**
@@ -92,32 +121,35 @@ export default class BlockSelector {
 	 * Initialize container.
 	 * Add some event listeners to container.
 	 *
-	 * @param container {MarkdownPostProcessorContext.containerEl} Container element
+	 * @param container Container element
 	 */
 	private initializeContainer(container: HTMLElement) {
 		// Mark container as initialized
 		container.addClass(BLOCK_SELECTOR);
 
 		// On click, select block element
-		container.addEventListener("click", (e) => {
-			this.selectionHandler.onBlockClick(e);
-		});
+		container.addEventListener(
+			"click",
+			this.selectionHandler.onBlockClick.bind(this.selectionHandler),
+		);
 
 		// On focusout, deselect block element
-		container.addEventListener("focusout", () => {
-			this.selectionHandler.deselect();
-		});
+		container.addEventListener(
+			"focusout",
+			this.selectionHandler.deselect.bind(this.selectionHandler),
+		);
 
 		// On keydown, navigate between blocks or toggle collapse
-		container.addEventListener("keydown", (e) => {
-			this.selectionHandler.onKeyDown(e);
-		});
+		container.addEventListener(
+			"keydown",
+			this.selectionHandler.onKeyDown.bind(this.selectionHandler),
+		);
 	}
 
 	/**
 	 * Set `data-rve-block` attribute to block elements.
 	 *
-	 * @param element {HTMLElement} Element to start searching
+	 * @param element Element to start searching
 	 */
 	private elementsToBlocks(element: HTMLElement) {
 		const elements = element.querySelectorAll(BLOCKS.join(", "));

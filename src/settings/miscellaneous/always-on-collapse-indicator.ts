@@ -20,7 +20,7 @@ export default class AlwaysOnCollapseIndicatorSetting extends Setting {
 	/**
 	 * Creates toggle component
 	 *
-	 * @param toggle {ToggleComponent} Toggle component
+	 * @param toggle Toggle component
 	 */
 	alwaysOnCollapseIndicator(toggle: ToggleComponent) {
 		const { settings } = this.plugin;
