@@ -71,13 +71,11 @@ export default class ReadingViewEnhancer extends Plugin {
 	 *
 	 * - Apply block color
 	 * - Apply always on collapse indicator
-	 * - Apply prevent table overflowing
 	 * - Apply scrollable code
 	 */
 	private applySettingsToStyles() {
 		this.applyBlockColor();
 		this.applyAlwaysOnCollapse();
-		this.applyPreventTableOverflowing();
 		this.applyScrollableCode();
 		this.applyCollapseIndicatorOnTheRightSide();
 		this.styles.apply();
@@ -113,17 +111,6 @@ export default class ReadingViewEnhancer extends Plugin {
 	applyCollapseIndicatorOnTheRightSide(isImmediate = false) {
 		this.styles.of("collapse-indicator-on-the-right-side").isActive =
 			this.settings.collapseIndicatorOnTheRightSide;
-		if (isImmediate) this.styles.apply();
-	}
-
-	/**
-	 * Apply prevent table overflowing
-	 *
-	 * @param isImmediate Whether to apply styles immediately
-	 */
-	applyPreventTableOverflowing(isImmediate = false) {
-		this.styles.of("prevent-table-overflowing").isActive =
-			this.settings.preventTableOverflowing;
 		if (isImmediate) this.styles.apply();
 	}
 

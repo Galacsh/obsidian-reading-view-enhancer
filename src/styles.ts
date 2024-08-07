@@ -115,27 +115,6 @@ export class CollapseIndicatorOnTheRightSideRule extends StyleRule {
 }
 
 /**
- * Prevent table overflowing rule.
- *
- * No variables to inject.
- */
-export class PreventTableOverflowingRule extends StyleRule {
-	constructor() {
-		const template = `
-			.markdown-preview-section > div:has(table) {
-				overflow: auto;
-			}
-
-			.markdown-preview-section thead > tr > th,
-			.markdown-preview-section tbody > tr > td {
-				white-space: nowrap;
-			}
-		`;
-		super(template, (template: string) => template);
-	}
-}
-
-/**
  * Scrollable code rule.
  *
  * No variables to inject.
@@ -162,7 +141,6 @@ type RuleKey =
 	| "block-color"
 	| "collapse-indicator-always-on"
 	| "collapse-indicator-on-the-right-side"
-	| "prevent-table-overflowing"
 	| "scrollable-code";
 
 /**
@@ -182,7 +160,6 @@ export default class RveStyles {
 			"collapse-indicator-always-on": new CollapseIndicatorAlwaysOnRule(),
 			"collapse-indicator-on-the-right-side":
 				new CollapseIndicatorOnTheRightSideRule(),
-			"prevent-table-overflowing": new PreventTableOverflowingRule(),
 			"scrollable-code": new ScrollableCodeRule(),
 		};
 	}

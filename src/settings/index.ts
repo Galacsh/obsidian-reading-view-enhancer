@@ -12,7 +12,6 @@ export interface RveSettings {
 	enableBlockSelector: boolean;
 	disableBlockSelectorOnMobile: boolean;
 	alwaysOnCollapseIndicator: boolean;
-	preventTableOverflowing: boolean;
 	scrollableCode: boolean;
 	autoSelectTopBlock: boolean;
 	collapseIndicatorOnTheRightSide: boolean;
@@ -30,7 +29,6 @@ export const DEFAULT_SETTINGS: RveSettings = {
 	enableBlockSelector: true,
 	disableBlockSelectorOnMobile: false,
 	alwaysOnCollapseIndicator: false,
-	preventTableOverflowing: false,
 	scrollableCode: false,
 	autoSelectTopBlock: false,
 	collapseIndicatorOnTheRightSide: false,
