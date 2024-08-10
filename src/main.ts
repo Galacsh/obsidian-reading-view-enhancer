@@ -1,5 +1,8 @@
 import { Plugin } from "obsidian";
-import RveStyles, { BlockColorRule } from "./styles";
+import RveStyles, {
+	BlockColorRule,
+	CollapseIndicatorOnTheRightSideRule,
+} from "./styles";
 import { RveSettingTab, RveSettings, DEFAULT_SETTINGS } from "./settings";
 import Commands from "./commands";
 import BlockSelector from "./block-selector";
@@ -78,6 +81,7 @@ export default class ReadingViewEnhancer extends Plugin {
 		this.applyAlwaysOnCollapse();
 		this.applyScrollableCode();
 		this.applyCollapseIndicatorOnTheRightSide();
+		this.applyAlignCheckboxToIndentationGuide();
 		this.styles.apply();
 	}
 
@@ -109,8 +113,32 @@ export default class ReadingViewEnhancer extends Plugin {
 	 * @param isImmediate Whether to apply styles immediately
 	 */
 	applyCollapseIndicatorOnTheRightSide(isImmediate = false) {
-		this.styles.of("collapse-indicator-on-the-right-side").isActive =
-			this.settings.collapseIndicatorOnTheRightSide;
+		const rightIndicator = this.styles.of(
+			"collapse-indicator-on-the-right-side",
+		) as CollapseIndicatorOnTheRightSideRule;
+
+		rightIndicator.isCheckboxAligned =
+			this.settings.alignCheckboxToIndentationGuide;
+		rightIndicator.isActive = this.settings.collapseIndicatorOnTheRightSide;
+
+		if (isImmediate) this.styles.apply();
+	}
+
+	/**
+	 * Apply checkbox align with indentation guide
+	 *
+	 * @param isImmediate Whether to apply styles immediately
+	 */
+	applyAlignCheckboxToIndentationGuide(isImmediate = false) {
+		this.styles.of("align-checkbox-to-indentation-guide").isActive =
+			this.settings.alignCheckboxToIndentationGuide;
+
+		const rightIndicator = this.styles.of(
+			"collapse-indicator-on-the-right-side",
+		) as CollapseIndicatorOnTheRightSideRule;
+		rightIndicator.isCheckboxAligned =
+			this.settings.alignCheckboxToIndentationGuide;
+
 		if (isImmediate) this.styles.apply();
 	}
 

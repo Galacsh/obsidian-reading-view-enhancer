@@ -1,6 +1,6 @@
 {
 	"name": "reading-view-enhancer",
-	"version": "0.1.6",
+	"version": "0.1.7",
 	"description": "This is a Obsidian plugin that enhances reading view. Use arrow keys to navigate between blocks or toggle collapse.",
 	"main": "main.js",
 	"scripts": {
@@ -19,9 +19,7 @@
 		"esbuild": "0.17.3",
 		"obsidian": "latest",
 		"tslib": "2.4.0",
-		"typescript": "4.7.4"
-	},
-	"dependencies": {
+		"typescript": "4.7.4",
 		"color2k": "^2.0.2"
 	}
 }

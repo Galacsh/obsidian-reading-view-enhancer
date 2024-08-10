@@ -84,7 +84,7 @@ export class BlockColorRule extends StyleRule {
 export class CollapseIndicatorAlwaysOnRule extends StyleRule {
 	constructor() {
 		const template = `
-			.markdown-preview-section .collapse-indicator {
+			.markdown-reading-view .markdown-preview-section .collapse-indicator {
 				opacity: 1;
 			}
 		`;
@@ -98,16 +98,38 @@ export class CollapseIndicatorAlwaysOnRule extends StyleRule {
  * No variables to inject.
  */
 export class CollapseIndicatorOnTheRightSideRule extends StyleRule {
+	isCheckboxAligned: boolean;
+
 	constructor() {
 		const template = `
-			.markdown-preview-section>div:not([class="markdown-preview-pusher"]),
-			.markdown-preview-section>div:not([class="mod-header"]) {
+			.markdown-reading-view .markdown-preview-section>div:not([class="markdown-preview-pusher"]),
+			.markdown-reading-view .markdown-preview-section>div:not([class="mod-header"]) {
 					position: relative;
 			}
 
-			.markdown-preview-section .collapse-indicator {
+			.markdown-reading-view .markdown-preview-section .collapse-indicator {
 					right: -1rem;
 					padding-inline-end: 0;
+			}
+
+			.markdown-reading-view .markdown-preview-section > div > .has-list-bullet > li {
+					margin-inline-start: calc(var(--list-indent) * {{LIST_INDENT}});
+			}
+		`;
+		super(template, (template: string) =>
+			template.replace(
+				"{{LIST_INDENT}}",
+				this.isCheckboxAligned ? "0.7" : "0.8",
+			),
+		);
+	}
+}
+
+export class AlignCheckboxToIndentationGuide extends StyleRule {
+	constructor() {
+		const template = `
+			.markdown-reading-view ul > li.task-list-item .task-list-item-checkbox {
+					margin-inline-start: calc(var(--checkbox-size) * -1.35);
 			}
 		`;
 		super(template, (template: string) => template);
@@ -122,12 +144,12 @@ export class CollapseIndicatorOnTheRightSideRule extends StyleRule {
 export class ScrollableCodeRule extends StyleRule {
 	constructor() {
 		const template = `
-			.markdown-preview-section div > pre {
+			.markdown-reading-view .markdown-preview-section div > pre {
 				overflow: hidden;
 				white-space: pre-wrap;
 			}
 
-			.markdown-preview-section div > pre > code {
+			.markdown-reading-view .markdown-preview-section div > pre > code {
 				display: block;
 				overflow: auto;
 				white-space: pre;
@@ -141,6 +163,7 @@ type RuleKey =
 	| "block-color"
 	| "collapse-indicator-always-on"
 	| "collapse-indicator-on-the-right-side"
+	| "align-checkbox-to-indentation-guide"
 	| "scrollable-code";
 
 /**
@@ -160,6 +183,8 @@ export default class RveStyles {
 			"collapse-indicator-always-on": new CollapseIndicatorAlwaysOnRule(),
 			"collapse-indicator-on-the-right-side":
 				new CollapseIndicatorOnTheRightSideRule(),
+			"align-checkbox-to-indentation-guide":
+				new AlignCheckboxToIndentationGuide(),
 			"scrollable-code": new ScrollableCodeRule(),
 		};
 	}

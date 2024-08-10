@@ -15,6 +15,7 @@ export interface RveSettings {
 	scrollableCode: boolean;
 	autoSelectTopBlock: boolean;
 	collapseIndicatorOnTheRightSide: boolean;
+	alignCheckboxToIndentationGuide: boolean;
 	nextBlockKeys: string;
 	prevBlockKeys: string;
 	toggleCollapseKeys: string;
@@ -32,6 +33,7 @@ export const DEFAULT_SETTINGS: RveSettings = {
 	scrollableCode: false,
 	autoSelectTopBlock: false,
 	collapseIndicatorOnTheRightSide: false,
+	alignCheckboxToIndentationGuide: false,
 	nextBlockKeys: "ArrowDown j",
 	prevBlockKeys: "ArrowUp k",
 	toggleCollapseKeys: "ArrowLeft ArrowRight h l",
