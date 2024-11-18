@@ -1,4 +1,4 @@
-import { MarkdownPostProcessorContext, Platform, MarkdownView } from "obsidian";
+import { MarkdownPostProcessorContext, Platform } from "obsidian";
 
 import ReadingViewEnhancer from "src/main";
 import SelectionHandler from "./selection-handler";
@@ -44,14 +44,14 @@ export default class BlockSelector {
 		this.plugin.registerEvent(
 			this.plugin.app.workspace.on(
 				"layout-change",
-				this.autoSelectTopBlock.bind(this),
-			),
+				this.autoSelectTopBlock.bind(this)
+			)
 		);
 		this.plugin.registerEvent(
 			this.plugin.app.workspace.on(
 				"active-leaf-change",
-				this.autoSelectTopBlock.bind(this),
-			),
+				this.autoSelectTopBlock.bind(this)
+			)
 		);
 	}
 
@@ -83,7 +83,7 @@ export default class BlockSelector {
 	 */
 	private blockify(
 		element: HTMLElement,
-		context: MarkdownPostProcessorContext,
+		context: MarkdownPostProcessorContext
 	) {
 		// If block selector is disabled, do nothing
 		if (!this.plugin.settings.enableBlockSelector) return;
@@ -127,22 +127,34 @@ export default class BlockSelector {
 		// Mark container as initialized
 		container.addClass(BLOCK_SELECTOR);
 
-		// On click, select block element
+		// Mouse and touch events handlers to detect tap or click event
 		container.addEventListener(
-			"click",
-			this.selectionHandler.onBlockClick.bind(this.selectionHandler),
+			"mousedown",
+			this.selectionHandler.handleMouseTouchStart.bind(this.selectionHandler)
+		);
+		container.addEventListener(
+			"touchstart",
+			this.selectionHandler.handleMouseTouchStart.bind(this.selectionHandler)
+		);
+		container.addEventListener(
+			"mouseup",
+			this.selectionHandler.handleMouseTouchEnd.bind(this.selectionHandler)
+		);
+		container.addEventListener(
+			"touchend",
+			this.selectionHandler.handleMouseTouchEnd.bind(this.selectionHandler)
 		);
 
 		// On focusout, deselect block element
 		container.addEventListener(
 			"focusout",
-			this.selectionHandler.deselect.bind(this.selectionHandler),
+			this.selectionHandler.deselect.bind(this.selectionHandler)
 		);
 
 		// On keydown, navigate between blocks or toggle collapse
 		container.addEventListener(
 			"keydown",
-			this.selectionHandler.onKeyDown.bind(this.selectionHandler),
+			this.selectionHandler.onKeyDown.bind(this.selectionHandler)
 		);
 	}
 

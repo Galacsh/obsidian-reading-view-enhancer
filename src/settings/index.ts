@@ -53,7 +53,7 @@ export class RveSettingTab extends PluginSettingTab {
 	plugin: ReadingViewEnhancer;
 
 	constructor(plugin: ReadingViewEnhancer) {
-		super(app, plugin);
+		super(plugin.app, plugin);
 		this.plugin = plugin;
 	}
 

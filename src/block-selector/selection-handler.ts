@@ -19,6 +19,8 @@ export default class SelectionHandler {
 	prevBlockKeys: string[];
 	toggleCollapseKeys: string[];
 	deselectKeys: string[];
+	startX: number;
+	startY: number;
 
 	constructor(plugin: ReadingViewEnhancer) {
 		this.selectedBlock = null;
@@ -26,6 +28,10 @@ export default class SelectionHandler {
 		this.prevBlockKeys = plugin.settings.prevBlockKeys.split(" ");
 		this.toggleCollapseKeys = plugin.settings.toggleCollapseKeys.split(" ");
 		this.deselectKeys = plugin.settings.deselectKeys.split(" ");
+	}
+
+	isSelected(block: HTMLElement) {
+		return block === this.selectedBlock;
 	}
 
 	/**
@@ -52,15 +58,60 @@ export default class SelectionHandler {
 	}
 
 	/**
-	 * Trigger 'select' on clicked block element.
+	 * Record the starting point of mouse or touch event.
 	 *
-	 * @param e {MouseEvent} Mouse event
+	 * @param e Mouse or touch event
 	 */
-	onBlockClick(e: MouseEvent) {
+	handleMouseTouchStart(e: MouseEvent | TouchEvent) {
+		const { x, y } = this.clientXY(e);
+		this.startX = x;
+		this.startY = y;
+	}
+
+	/**
+	 * Calculate the distance between the starting point and the end point.
+	 * If the distance is less than 10, it is considered as a tap and
+	 * fires the `handleTap` method.
+	 *
+	 * @param e Mouse or touch event
+	 */
+	handleMouseTouchEnd(e: MouseEvent | TouchEvent) {
+		const { x: endX, y: endY } = this.clientXY(e);
+
+		const distance = Math.sqrt(
+			Math.pow(endX - this.startX, 2) + Math.pow(endY - this.startY, 2)
+		);
+
+		if (distance < 10) {
+			this.handleTap(e);
+		}
+	}
+
+	/**
+	 * Select or toggle collapse on tap.
+	 *
+	 * @param e Mouse or touch event
+	 */
+	private handleTap(e: MouseEvent | TouchEvent) {
 		const target = e.target as HTMLElement;
 		const block = target.closest(`[${BLOCK_ATTR}=true]`);
 		if (block instanceof HTMLElement) {
-			this.select(block);
+			// if already selected, toggle collapse
+			if (this.isSelected(block)) {
+				this.toggleCollapse(block);
+			}
+			// if not selected, select
+			else {
+				this.select(block);
+			}
+		}
+	}
+
+	private clientXY(e: MouseEvent | TouchEvent) {
+		if (e instanceof MouseEvent) {
+			return { x: e.clientX, y: e.clientY };
+		} else {
+			return { x: e.touches[0].clientX, y: e.touches[0].clientY };
 		}
 	}
 
@@ -151,7 +202,7 @@ export default class SelectionHandler {
 	 */
 	private toggleCollapse(block: HTMLElement) {
 		const collapseIndicator = block.querySelector(
-			COLLAPSE_INDICATORS.join(","),
+			COLLAPSE_INDICATORS.join(",")
 		) as HTMLElement;
 		if (collapseIndicator) {
 			collapseIndicator.click();
