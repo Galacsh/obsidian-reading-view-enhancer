@@ -1,4 +1,4 @@
-import { MarkdownPostProcessorContext, Platform } from "obsidian";
+import { Platform, type MarkdownPostProcessorContext } from "obsidian";
 
 import ReadingViewEnhancer from "src/main";
 import SelectionHandler from "./selection-handler";
@@ -23,7 +23,6 @@ import {
 export default class BlockSelector {
 	plugin: ReadingViewEnhancer;
 	selectionHandler: SelectionHandler;
-	selectedBlock: HTMLElement | null;
 
 	/**
 	 * Initialize BlockSelector.
@@ -76,6 +75,10 @@ export default class BlockSelector {
 		this.selectionHandler.selectTopBlockInTheView(viewContainer);
 	}
 
+	toggleBlockHighlight() {
+		this.selectionHandler.selectedBlockHighlight();
+	}
+
 	/**
 	 * Blockify some elements.
 	 * If container is not initialized, initialize it.
@@ -102,7 +105,7 @@ export default class BlockSelector {
 			this.initializeContainer(container);
 		}
 
-		this.elementsToBlocks(element);
+		this.elementsToBlocks(element, context);
 	}
 
 	/**
@@ -163,12 +166,20 @@ export default class BlockSelector {
 	 *
 	 * @param element Element to start searching
 	 */
-	private elementsToBlocks(element: HTMLElement) {
+	private elementsToBlocks(
+		element: HTMLElement,
+		context: MarkdownPostProcessorContext
+	) {
+		const section = context.getSectionInfo(element);
 		const elements = element.querySelectorAll(BLOCKS.join(", "));
 		elements.forEach((el) => {
 			if (el.hasClass(FRONTMATTER)) return;
 			el.setAttribute(BLOCK_ATTR, "true");
 			el.setAttribute("tabindex", "-1");
+			if (section?.lineStart && section?.lineEnd) {
+				el.setAttribute("data-rve-line-start", section.lineStart.toString());
+				el.setAttribute("data-rve-line-end", section.lineEnd.toString());
+			}
 		});
 	}
 }

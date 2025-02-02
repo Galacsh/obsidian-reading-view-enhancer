@@ -8,12 +8,15 @@ import {
 	scrollBottomIntoView,
 	scrollTopIntoView,
 } from "./selection-util";
+import { getActiveView } from "src/utils";
+import type { MarkdownViewModeType } from "obsidian";
 
 /**
  * Handle block selection.
  * This class is used by BlockSelector.
  */
 export default class SelectionHandler {
+	plugin: ReadingViewEnhancer;
 	selectedBlock: HTMLElement | null;
 	nextBlockKeys: string[];
 	prevBlockKeys: string[];
@@ -23,6 +26,7 @@ export default class SelectionHandler {
 	startY: number;
 
 	constructor(plugin: ReadingViewEnhancer) {
+		this.plugin = plugin;
 		this.selectedBlock = null;
 		this.nextBlockKeys = plugin.settings.nextBlockKeys.split(" ");
 		this.prevBlockKeys = plugin.settings.prevBlockKeys.split(" ");
@@ -53,7 +57,6 @@ export default class SelectionHandler {
 		if (this.selectedBlock) {
 			this.selectedBlock.removeClass(SELECTED_BLOCK);
 			this.selectedBlock.blur();
-			this.selectedBlock = null;
 		}
 	}
 
@@ -211,5 +214,57 @@ export default class SelectionHandler {
 		if (collapseIndicator) {
 			collapseIndicator.click();
 		}
+	}
+
+	/**
+	 * Toggle block highlight.
+	 */
+	async selectedBlockHighlight() {
+		if (this.selectedBlock == null) return;
+		await this.toggleBlockHighlight(this.selectedBlock);
+	}
+
+	/**
+	 * Toggles highlight of the given block element.
+	 *
+	 * @param block Block element to toggle highlight
+	 */
+	private async toggleBlockHighlight(block: HTMLElement) {
+		const view = getActiveView(this.plugin);
+		if (view == null || view.file == null) return;
+		const editor = view.editor;
+
+		const lineStartStr = block.getAttribute("data-rve-line-start");
+		const lineEndStr = block.getAttribute("data-rve-line-end");
+		if (!lineStartStr || !lineEndStr) return;
+
+		const lineStart = parseInt(lineStartStr, 10);
+		const lineEnd = parseInt(lineEndStr, 10);
+		const startPos = { line: lineStart, ch: 0 };
+		const endPos = { line: lineEnd, ch: view.editor.getLine(lineEnd).length };
+		const selectedText = editor.getRange(startPos, endPos);
+
+		// editor instance might not be initialized
+		this.changeMode("source");
+		view.containerEl.style.visibility = "hidden";
+
+		if (selectedText.startsWith("==") && selectedText.endsWith("==")) {
+			editor.replaceRange(selectedText.slice(2, -2), startPos, endPos);
+		} else {
+			editor.replaceRange("==" + selectedText + "==", startPos, endPos);
+		}
+
+		// restore the reading view
+		this.changeMode("preview");
+		view.containerEl.style.visibility = "visible";
+	}
+
+	private changeMode(mode: MarkdownViewModeType) {
+		const view = getActiveView(this.plugin);
+		if (view == null) return;
+
+		const state = view.getState();
+
+		view.setState({ ...state, mode }, { history: true });
 	}
 }

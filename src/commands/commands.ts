@@ -1,4 +1,3 @@
-import { RveCommand } from ".";
 import ReadingViewEnhancer from "src/main";
 import {
 	getActiveView,
@@ -6,6 +5,7 @@ import {
 	isReadingView,
 } from "src/utils";
 import { Platform } from "obsidian";
+import type { RveCommand } from ".";
 
 /**
  * Rerender all reading views
@@ -14,7 +14,7 @@ import { Platform } from "obsidian";
  * @returns Rerender all reading views command
  */
 export const rerenderAllReadingViews: RveCommand = (
-	plugin: ReadingViewEnhancer,
+	plugin: ReadingViewEnhancer
 ) => ({
 	id: "rerender-all-reading-views",
 	name: "Rerender all reading views",
@@ -36,7 +36,7 @@ export const rerenderAllReadingViews: RveCommand = (
  * @returns Select top block in the view command
  */
 export const selectTopBlockInTheView: RveCommand = (
-	plugin: ReadingViewEnhancer,
+	plugin: ReadingViewEnhancer
 ) => ({
 	id: "select-top-block-in-the-view",
 	name: "Select Top Block in the View",
@@ -44,7 +44,7 @@ export const selectTopBlockInTheView: RveCommand = (
 		const activeView = getActiveView(plugin);
 		// If checking is set to true, perform a preliminary check.
 		if (checking) {
-			if (isReadingView(activeView)) return false;
+			if (!isReadingView(activeView)) return false;
 			else if (isNotEnabled(plugin)) return false;
 			else if (isMobileAndDisabled(plugin)) return false;
 			else return true;
@@ -54,6 +54,32 @@ export const selectTopBlockInTheView: RveCommand = (
 			const container = getReadingViewContainer(activeView);
 			if (container) {
 				plugin.blockSelector.selectTopBlockInTheView(container);
+			}
+
+			return true;
+		}
+	},
+});
+
+export const toggleBlockHighlight: RveCommand = (
+	plugin: ReadingViewEnhancer
+) => ({
+	id: "toggle-block-highlight",
+	name: "Toggle Block Highlight",
+	checkCallback: (checking: boolean): boolean => {
+		const activeView = getActiveView(plugin);
+		// If checking is set to true, perform a preliminary check.
+		if (checking) {
+			if (!isReadingView(activeView)) return false;
+			else if (isNotEnabled(plugin)) return false;
+			else if (isMobileAndDisabled(plugin)) return false;
+			else return true;
+		}
+		// If checking is set to false, perform an action.
+		else {
+			const container = getReadingViewContainer(activeView);
+			if (container) {
+				plugin.blockSelector.toggleBlockHighlight();
 			}
 
 			return true;
