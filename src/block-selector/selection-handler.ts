@@ -127,18 +127,22 @@ export default class SelectionHandler {
 	onKeyDown(e: KeyboardEvent) {
 		const block = e.target as HTMLElement;
 
-		if (this.nextBlockKeys.includes(e.key)) {
+		if (this.pressed(this.nextBlockKeys, e)) {
 			e.preventDefault();
 			this.selectNextBlockOrScroll(block);
-		} else if (this.prevBlockKeys.includes(e.key)) {
+		} else if (this.pressed(this.prevBlockKeys, e)) {
 			e.preventDefault();
 			this.selectPreviousBlockOrScroll(block);
-		} else if (this.toggleCollapseKeys.includes(e.key)) {
+		} else if (this.pressed(this.toggleCollapseKeys, e)) {
 			e.preventDefault();
 			this.toggleCollapse(block);
-		} else if (this.deselectKeys.includes(e.key)) {
+		} else if (this.pressed(this.deselectKeys, e)) {
 			this.deselect();
 		}
+	}
+
+	private pressed(keysOrCodes: string[], e: KeyboardEvent) {
+		return keysOrCodes.includes(e.code) || keysOrCodes.includes(e.key);
 	}
 
 	/**

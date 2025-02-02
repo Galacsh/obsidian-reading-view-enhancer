@@ -34,9 +34,9 @@ export const DEFAULT_SETTINGS: RveSettings = {
 	autoSelectTopBlock: false,
 	collapseIndicatorOnTheRightSide: false,
 	alignCheckboxToIndentationGuide: false,
-	nextBlockKeys: "ArrowDown j",
-	prevBlockKeys: "ArrowUp k",
-	toggleCollapseKeys: "ArrowLeft ArrowRight h l",
+	nextBlockKeys: "ArrowDown KeyJ",
+	prevBlockKeys: "ArrowUp KeyK",
+	toggleCollapseKeys: "ArrowLeft ArrowRight KeyH KeyL",
 	deselectKeys: "Escape",
 };
 
