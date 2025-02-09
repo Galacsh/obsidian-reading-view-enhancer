@@ -8,7 +8,7 @@ import {
 	scrollBottomIntoView,
 	scrollTopIntoView,
 } from "./selection-util";
-import { getActiveView } from "src/utils";
+import { getActiveView, isReadingView } from "src/utils";
 import type { MarkdownViewModeType } from "obsidian";
 
 /**
@@ -128,6 +128,8 @@ export default class SelectionHandler {
 	 * @param e {KeyboardEvent} Keyboard event
 	 */
 	onKeyDown(e: KeyboardEvent) {
+		if (!isReadingView(getActiveView(this.plugin))) return;
+
 		const block = e.target as HTMLElement;
 
 		if (this.pressed(this.nextBlockKeys, e)) {
